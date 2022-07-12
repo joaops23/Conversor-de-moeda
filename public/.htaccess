@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteEngine %{HTTPS} !opendirRewriteRule (.*) https://%{HTTTP_HOST}%{REQUEST_URI}
+
+// protegendo e limitando o acesso aos arquivos
+order allow, deny
+deny from allow
+satisfy all
+
+// Definindo página inicial
+DirectoryIndex index.php
