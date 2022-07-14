@@ -1,10 +1,6 @@
-RewriteEngine On
-RewriteEngine %{HTTPS} !opendirRewriteRule (.*) https://%{HTTTP_HOST}%{REQUEST_URI}
+ReWriteEngine On
+ReWriteCond %{REQUEsT_URI} !-f
+ReWriteCond %{REQUEsT_URI} !-d
+ReWriteCond %{REQUEsT_URI} !-|
 
-// protegendo e limitando o acesso aos arquivos
-order allow, deny
-deny from allow
-satisfy all
-
-// Definindo página inicial
-DirectoryIndex index.php
+ReWriteRule ^ index.php

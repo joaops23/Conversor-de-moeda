@@ -1,10 +1,9 @@
-<?php
+<?php 
+
 namespace App;
 
-require_once "../vendor/autoload.php";
-require_once("../app/router/router.php");
+use Router;
 
-use App\Router;
-
-
-?>
+require __DIR__ . '/../vendor/autoload.php';
+require_once "../app/controllers/Controllers.php";
+require_once "../app/router/router.php";
