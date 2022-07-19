@@ -9,7 +9,7 @@
 ## URL de requisição 
 
 * <a href="#">http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}</a>
-* <a href="#">http://localhost:8000/exchange/10/BRL/USD/4.50
+* <a href="#">http://localhost:8000/exchange/10/BRL/USD/4,50
 
 ## Formato da resposta
  ~~~ JSON
