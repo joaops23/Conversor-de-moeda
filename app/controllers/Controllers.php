@@ -8,6 +8,27 @@ use Slim\Factory\AppFactory;
 
 class Conversor 
 {
+    private $data; //Armazena os args da requisição
+    private $moeda;
+
+
+    public function __construct(){
+        $this->moeda = ['EUR' => "EU$", "BRL" => "BR$", "USD" => "US$"];
+    }
+    public function getData(){
+        return $this->data;
+    }
+
+    public function setData($args){
+        if(isset($args)){
+            $this->data = $args;
+        }
+        
+    }
+
+    public function getSimbolo($moeda){
+        return $this->moeda[$moeda];
+    }
 
     public function metodos(Request $request, Response $response, $args): Response
     {
@@ -22,31 +43,32 @@ class Conversor
         return $response;
     }
 
-    public function VerMetodo(Request $request, Response $response, $args): Response 
+    public function process(Request $request, Response $response, $args)
     {
-        $response->getBody()->write("passou");
-        return $response;
+        if(isset($args)){
+            $this->setData($args);
+        }
+
+        $args = $this->getData();
+
+        $exchange = $this->Conversao($args['amount'], str_replace(",",".",$args['rate']));
+
+        $moeda = $this->getSimbolo($args['to']);
+
+        $resposta = [
+            "valorConvertido" => $exchange,
+            "simboloMoeda"=> $moeda
+        ];
+        $response->getBody()->write(json_encode($resposta));
+        return $response
+                ->withStatus(201);
+
     }
 
-    private function RealDol()
+    private function Conversao($amount, $rate)
     {
-        // exchange(cambio), montante, from, to, rate
-        
-    }
-
-    private function DolarReal()
-    {
-
-    }
-    
-    private function EuroReal()
-    {
-
-    }
-    
-    private function RealEuro()
-    {
-
+        $return = $amount * $rate;
+        return $return;
     }
     
 }
