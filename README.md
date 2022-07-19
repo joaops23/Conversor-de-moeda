@@ -34,3 +34,5 @@
 ## Tecnologias utilizadas
 PHP 8.0.17
 Slim Framework
+
+<h3 align="center">✔Finalizado✔</h3>
